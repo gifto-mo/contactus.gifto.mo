@@ -17,7 +17,7 @@
             --text-secondary: #a0aec0;
             --bg: #1a1e1d;
             --card-bg: rgba(27, 35, 34, 0.8);
-            --radius: 20px;
+            --radius: 12px;
             --transition: 0.3s;
         }
         
@@ -34,6 +34,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            -webkit-text-size-adjust: 100%;
         }
         
         /* 動態背景元素 */
@@ -62,23 +63,23 @@
             75% { transform: translate(-5vw, 5vh); }
         }
         
-        /* 頁眉樣式 */
+        /* 頁眉樣式 - 手機優化 */
         .header {
             position: sticky;
             top: 0;
             z-index: 100;
             background: rgba(26, 33, 32, 0.95);
             backdrop-filter: blur(10px);
-            height: 80px;
+            height: 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+            padding: 0 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         
         .logo {
-            height: 45px;
+            height: 35px;
             transition: all 0.3s ease;
         }
         
@@ -86,19 +87,33 @@
             transform: scale(1.05);
         }
         
-        /* 導航菜單 */
+        /* 導航菜單 - 手機優化 */
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 5px;
         }
         
         .nav-link {
             color: var(--text);
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 8px 12px;
             border-radius: var(--radius);
             transition: all var(--transition);
             position: relative;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50px;
+        }
+        
+        .nav-link i {
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+        
+        .nav-link span {
+            font-size: 0.7rem;
         }
         
         .nav-link::before {
@@ -118,20 +133,20 @@
         
         .nav-link.active {
             background: var(--primary);
-            box-shadow: 0 4px 15px rgba(58, 142, 226, 0.4);
+            box-shadow: 0 4px 10px rgba(58, 142, 226, 0.4);
         }
         
-        /* 頁面標題 */
+        /* 頁面標題 - 手機優化 */
         .page-header {
             text-align: center;
-            padding: 80px 20px 50px;
+            padding: 50px 15px 30px;
             max-width: 800px;
             margin: 0 auto;
         }
         
         .page-title {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 15px;
             background: linear-gradient(to right, #fff, #a0d1ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -142,10 +157,10 @@
         .page-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(to right, var(--primary), var(--primary-light));
             transform: scaleX(0);
             transform-origin: left;
@@ -157,11 +172,11 @@
         }
         
         .page-subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.6;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
             animation: fadeInUp 1s ease forwards 0.8s;
         }
         
@@ -169,25 +184,25 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* 主要內容 */
+        /* 主要內容 - 手機優化 */
         .contact-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px 80px;
+            padding: 0 15px 50px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
         
-        /* 聯絡信息卡片 */
+        /* 聯絡信息卡片 - 手機優化 */
         .contact-card {
             background: var(--card-bg);
             border-radius: var(--radius);
-            padding: 40px;
+            padding: 25px;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(50px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(30px);
             opacity: 0;
             animation: cardEntrance 1s ease forwards 0.5s;
         }
@@ -197,15 +212,15 @@
         }
         
         .contact-card:hover {
-            transform: translateY(-5px) !important;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
         
         .section-title::after {
@@ -213,22 +228,22 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
             background: var(--primary);
         }
         
-        /* 聯絡方式項目 */
+        /* 聯絡方式項目 - 手機優化 */
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
             transition: all 0.3s ease;
             opacity: 0;
-            transform: translateX(-20px);
+            transform: translateX(-15px);
         }
         
         .contact-item:nth-child(1) { animation: itemEntrance 0.8s ease forwards 0.8s; }
@@ -242,19 +257,19 @@
         
         .contact-item:hover {
             background: rgba(255, 255, 255, 0.05);
-            transform: translateX(5px) !important;
+            transform: translateX(3px) !important;
         }
         
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(58, 142, 226, 0.4);
+            box-shadow: 0 4px 10px rgba(58, 142, 226, 0.4);
             transition: all 0.3s ease;
             overflow: hidden;
             border: 2px solid white;
@@ -262,7 +277,7 @@
         
         .contact-item:hover .contact-icon {
             transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(58, 142, 226, 0.6);
+            box-shadow: 0 6px 15px rgba(58, 142, 226, 0.5);
         }
         
         .contact-icon img {
@@ -273,19 +288,20 @@
         }
         
         .contact-text h3 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 5px;
         }
         
         .contact-text p, .contact-text a {
             color: var(--text-secondary);
-            font-size: 1.05rem;
+            font-size: 0.95rem;
         }
         
         .contact-text a {
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
+            word-break: break-all;
         }
         
         .contact-text a::after {
@@ -303,86 +319,88 @@
             width: 100%;
         }
         
-        /* 營業時間 */
+        /* 營業時間 - 手機優化 */
         .business-hours {
-            margin-top: 40px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .hours-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
         
         .day-hour {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
             transition: all 0.2s ease;
+            font-size: 0.95rem;
         }
         
         .day-hour:hover {
-            transform: translateX(5px);
+            transform: translateX(3px);
             border-color: var(--primary);
         }
         
-        /* 聯絡表單 */
+        /* 聯絡表單 - 手機優化 */
         .form-card {
             background: var(--card-bg);
             border-radius: var(--radius);
-            padding: 40px;
+            padding: 25px;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(50px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(30px);
             opacity: 0;
             animation: cardEntrance 1s ease forwards 0.7s;
         }
         
         .form-card:hover {
-            transform: translateY(-5px) !important;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 15px;
         }
         
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .form-label {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: var(--text-secondary);
         }
         
         .form-label i {
-            color: white; /* Changed from var(--primary-light) to white */
-            width: 20px;
+            color: white;
+            width: 18px;
             text-align: center;
+            font-size: 0.9rem;
         }
         
         .form-input, .form-textarea, .form-select {
-            padding: 16px 20px;
+            padding: 14px 16px;
             border-radius: var(--radius);
             border: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             background: rgba(255, 255, 255, 0.07);
             color: white;
             width: 100%;
             font-family: inherit;
-            border: 2px solid transparent;
+            border: 1px solid transparent;
             transition: all 0.3s ease;
         }
         
@@ -390,11 +408,11 @@
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 4px rgba(58, 142, 226, 0.2);
+            box-shadow: 0 0 0 3px rgba(58, 142, 226, 0.2);
         }
         
         .form-textarea {
-            min-height: 180px;
+            min-height: 120px;
             resize: vertical;
         }
         
@@ -402,28 +420,29 @@
             appearance: none;
             background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23a0aec0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
+            background-position: right 12px center;
+            background-size: 14px;
         }
         
         .submit-btn {
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             font-weight: 600;
-            padding: 16px 25px;
+            padding: 14px 20px;
             border: none;
             border-radius: var(--radius);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
-            margin-top: 15px;
+            font-size: 1rem;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            box-shadow: 0 6px 20px rgba(58, 142, 226, 0.4);
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(58, 142, 226, 0.4);
             position: relative;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .submit-btn::before {
@@ -442,77 +461,121 @@
         }
         
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 9px 25px rgba(58, 142, 226, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(58, 142, 226, 0.5);
         }
         
         .submit-btn:active {
             transform: translateY(0);
         }
         
-        /* 頁腳 */
+        /* 頁腳 - 手機優化 */
         .footer {
             background: rgba(18, 20, 20, 0.98);
-            padding: 40px 20px;
+            padding: 30px 15px;
             text-align: center;
             border-top: 1px solid rgba(58, 142, 226, 0.1);
         }
         
         .footer-logo {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .footer-logo img {
-            height: 50px;
+            height: 40px;
             opacity: 0.8;
         }
         
-        /* 響應式設計 */
-        @media (max-width: 900px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .page-title {
-                font-size: 2.5rem;
+        /* 觸摸目標優化 */
+        input, textarea, select, button {
+            -webkit-appearance: none;
+            touch-action: manipulation;
+        }
+        
+        /* 防止iOS縮放 */
+        @media screen and (max-width: 767px) {
+            input, select, textarea {
+                font-size: 16px !important;
             }
         }
         
-        @media (max-width: 768px) {
+        /* 平板電腦適配 */
+        @media (min-width: 600px) {
             .header {
-                padding: 0 20px;
+                padding: 0 25px;
                 height: 70px;
             }
             
-            .nav-menu {
-                display: flex;
+            .logo {
+                height: 40px;
+            }
+            
+            .nav-link {
+                padding: 10px 15px;
+                font-size: 1rem;
+                flex-direction: row;
+                gap: 8px;
+            }
+            
+            .nav-link i {
+                margin-bottom: 0;
+            }
+            
+            .nav-link span {
+                font-size: 0.9rem;
             }
             
             .page-header {
                 padding: 60px 20px 40px;
             }
             
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .contact-container {
+                padding: 0 20px 60px;
+                gap: 25px;
+            }
+            
             .contact-card, .form-card {
                 padding: 30px;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .page-title {
-                font-size: 2rem;
-            }
             
             .hours-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* 桌面電腦適配 */
+        @media (min-width: 900px) {
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
             }
             
-            .contact-item {
-                padding: 15px;
+            .page-title {
+                font-size: 2.5rem;
             }
             
-            .contact-icon {
-                width: 45px;
+            .header {
+                padding: 0 30px;
+                height: 80px;
+            }
+            
+            .logo {
                 height: 45px;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+            }
+            
+            .nav-link {
+                padding: 10px 20px;
             }
         }
     </style>
@@ -521,17 +584,29 @@
     <!-- 動態背景元素 -->
     <div class="bg-elements" id="bgElements"></div>
     
-    <!-- 頁眉導航 -->
+    <!-- 頁眉導航 - 手機優化 -->
     <header class="header">
         <a href="https://gifto-mo.github.io/home.gifto.mo/">
             <img class="logo" src="https://raw.githubusercontent.com/gifto-mo/home.gitfmo.mo./main/logo.png" alt="Giftomo Logo">
         </a>
         
         <nav class="nav-menu">
-            <a href="#" class="nav-link"><i class="fas fa-home"></i> 首頁</a>
-            <a href="#" class="nav-link"><i class="fas fa-gift"></i> 產品</a>
-            <a href="#" class="nav-link"><i class="fas fa-tags"></i> 優惠</a>
-            <a href="#" class="nav-link active"><i class="fas fa-phone-alt"></i> 聯絡我們</a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>首頁</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-gift"></i>
+                <span>產品</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-tags"></i>
+                <span>優惠</span>
+            </a>
+            <a href="#" class="nav-link active">
+                <i class="fas fa-phone-alt"></i>
+                <span>聯絡</span>
+            </a>
         </nav>
     </header>
 
@@ -670,12 +745,17 @@
             const bgElements = document.getElementById('bgElements');
             const colors = ['#3a8ee2', '#5a9ef3', '#4a6ee3'];
             
-            for (let i = 0; i < 5; i++) {
+            // 減少背景元素數量以提升移動設備性能
+            const circleCount = window.innerWidth < 600 ? 3 : 5;
+            
+            for (let i = 0; i < circleCount; i++) {
                 const circle = document.createElement('div');
                 circle.classList.add('bg-circle');
                 
-                // 隨機大小
-                const size = Math.random() * 300 + 100;
+                // 隨機大小 (移動設備上更小)
+                const size = window.innerWidth < 600 ? 
+                    Math.random() * 150 + 50 : 
+                    Math.random() * 300 + 100;
                 circle.style.width = `${size}px`;
                 circle.style.height = `${size}px`;
                 
@@ -694,7 +774,7 @@
             }
         }
         
-        // 表單提交處理
+        // 表單提交處理 - 移動設備優化
         function setupForm() {
             const form = document.querySelector('.contact-form');
             
@@ -719,10 +799,38 @@
             });
         }
         
+        // 移動設備觸摸反饋優化
+        function setupTouchFeedback() {
+            const buttons = document.querySelectorAll('button, .contact-item, .nav-link');
+            
+            buttons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                }, { passive: true });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                }, { passive: true });
+            });
+        }
+        
         // 頁面加載完成後初始化
         document.addEventListener('DOMContentLoaded', function() {
             createBackground();
             setupForm();
+            setupTouchFeedback();
+            
+            // 優化移動設備上的滾動行為
+            if ('scrollBehavior' in document.documentElement.style) {
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }
+        });
+        
+        // 防止表單提交後頁面跳轉時的滾動問題
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                window.scrollTo(0, 0);
+            }
         });
     </script>
 </body>
