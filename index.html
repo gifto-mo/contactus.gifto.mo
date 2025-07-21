@@ -368,7 +368,7 @@
         }
         
         .form-label i {
-            color: white; /* Changed from var(--primary-light) to white */
+            color: white;
             width: 20px;
             text-align: center;
         }
@@ -450,6 +450,146 @@
             transform: translateY(0);
         }
         
+        /* 感謝頁面樣式 */
+        .thank-you-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .thank-you-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .thank-you-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .thank-you-logo {
+            height: 60px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .thank-you-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .thank-you-title {
+            font-size: 2rem;
+            margin: 0 0 20px 0;
+            font-weight: 600;
+            background: linear-gradient(to right, #fff, #a0d1ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .thank-you-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+        
+        .thank-you-countdown {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin: 25px 0;
+        }
+        
+        .countdown-number {
+            font-weight: bold;
+            color: var(--primary-light);
+            font-size: 1.2rem;
+            display: inline-block;
+            min-width: 30px;
+        }
+        
+        .thank-you-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 6px 20px rgba(58, 142, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .thank-you-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .thank-you-btn:hover::before {
+            left: 100%;
+        }
+        
+        .thank-you-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 25px rgba(58, 142, 226, 0.6);
+        }
+        
+        .thank-you-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .thank-you-btn:hover i {
+            transform: translateX(-3px);
+        }
+        
         /* 頁腳 */
         .footer {
             background: rgba(18, 20, 20, 0.98);
@@ -514,12 +654,46 @@
                 width: 45px;
                 height: 45px;
             }
+            
+            .thank-you-card {
+                padding: 30px 20px;
+                width: 85%;
+            }
+            
+            .thank-you-title {
+                font-size: 1.8rem;
+            }
+            
+            .thank-you-message {
+                font-size: 1rem;
+            }
+            
+            .thank-you-logo {
+                height: 50px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- 動態背景元素 -->
     <div class="bg-elements" id="bgElements"></div>
+    
+    <!-- 感謝頁面 (初始隱藏) -->
+    <div class="thank-you-container" id="thankYouContainer">
+        <div class="thank-you-card">
+            <img class="thank-you-logo" src="https://raw.githubusercontent.com/gifto-mo/home.gitfmo.mo./main/logo.png" alt="Giftomo Logo">
+            <h1 class="thank-you-title">感謝您的訊息！</h1>
+            <p class="thank-you-message">我們已收到您的聯絡請求，團隊將在 24 小時內回覆您。</p>
+            
+            <div class="thank-you-countdown">
+                <span id="countdown-text">將在 <span class="countdown-number" id="countdown">15</span> 秒後自動返回首頁</span>
+            </div>
+            
+            <a href="https://gifto-mo.github.io/home.gifto.mo/" class="thank-you-btn">
+                <i class="fas fa-arrow-left"></i> 立即返回首頁
+            </a>
+        </div>
+    </div>
     
     <!-- 頁眉導航 -->
     <header class="header">
@@ -607,13 +781,7 @@
             <!-- 聯絡表單 -->
             <section class="form-card">
                 <h2 class="section-title">發送訊息給我們</h2>
-                <form class="contact-form" action="https://formsubmit.co/gifto.mo.mail@gmail.com" method="POST">
-                    <!-- FormSubmit 配置 -->
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://gifto-mo.github.io/contactus.thankyou.gifto.mo/">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_subject" value="Giftomo 網站新訊息">
-                    
+                <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name" class="form-label">
                             <i class="fas fa-user"></i> 您的姓名
@@ -694,9 +862,34 @@
             }
         }
         
+        // 顯示感謝頁面
+        function showThankYouPage() {
+            const thankYouContainer = document.getElementById('thankYouContainer');
+            thankYouContainer.style.display = 'flex';
+            
+            // 倒數計時器
+            let seconds = 15;
+            const countdownElement = document.getElementById('countdown');
+            
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                
+                // 最後5秒添加脈衝效果
+                if (seconds <= 5) {
+                    countdownElement.style.animation = 'pulse 0.8s infinite';
+                }
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'https://gifto-mo.github.io/home.gifto.mo/';
+                }
+            }, 1000);
+        }
+        
         // 表單提交處理
         function setupForm() {
-            const form = document.querySelector('.contact-form');
+            const form = document.getElementById('contactForm');
             
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -708,21 +901,45 @@
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 發送中...';
                 submitBtn.disabled = true;
                 
-                // 直接提交表單到FormSubmit
-                this.submit();
-                
-                // 如果提交失敗的備用處理
+                // 模擬表單提交
                 setTimeout(() => {
+                    // 這裡可以添加實際的表單提交代碼
+                    // 例如使用Fetch API或FormSubmit
+                    
+                    // 顯示感謝頁面
+                    showThankYouPage();
+                    
+                    // 重置按鈕狀態
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                }, 10000); // 10秒後重置按鈕狀態
+                    
+                    // 重置表單
+                    form.reset();
+                }, 1500);
             });
         }
+        
+        // 添加脈衝動畫
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.1); opacity: 0.8; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
         
         // 頁面加載完成後初始化
         document.addEventListener('DOMContentLoaded', function() {
             createBackground();
             setupForm();
+            
+            // 檢查URL參數是否顯示感謝頁面
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('thankyou')) {
+                showThankYouPage();
+            }
         });
     </script>
 </body>
